@@ -15,8 +15,7 @@ Cabbage API is a transaction management API built with FastAPI and Plaid. It con
 
 ## Installation & Usage
 
-1. **Set Up Dependencies**: Install requirements with `poetry install` or `pip install -r requirements.txt`.
+1. **Set Up Dependencies**: Install requirements with `poetry install`.
 2. **Configure Environment Variables**: Add Plaid and other necessary API keys.
-3. **Run the API**: Use `uvicorn main:app --reload` to start the API server locally.
 
 ---
