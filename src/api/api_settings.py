@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from routes import hello, plaid_service
+from routes import plaid_service
 
 app = FastAPI()
 
@@ -18,5 +18,4 @@ app.add_middleware(
 )
 
 
-app.include_router(hello.router)
 app.include_router(plaid_service.router)

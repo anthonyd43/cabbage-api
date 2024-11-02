@@ -21,7 +21,10 @@ from plaid.model.link_token_create_request_statements import (
 )
 from plaid.model.link_token_create_request_user import LinkTokenCreateRequestUser
 from plaid.model.products import Products
-from plaid.model.item_public_token_exchange_request import ItemPublicTokenExchangeRequest
+from plaid.model.item_public_token_exchange_request import (
+    ItemPublicTokenExchangeRequest,
+)
+
 load_dotenv()
 
 router = APIRouter(prefix="/api/plaid", tags=["plaid"])
@@ -52,7 +55,9 @@ async def create_link_token():
         request = LinkTokenCreateRequest(
             products=plaid_config.products,
             client_name="Plaid Quickstart",
-            country_codes=list(map(lambda x: CountryCode(x), plaid_config.COUNTRY_CODES)),
+            country_codes=list(
+                map(lambda x: CountryCode(x), plaid_config.COUNTRY_CODES)
+            ),
             language="en",
             user=LinkTokenCreateRequestUser(client_user_id=str(time.time())),
         )
@@ -81,12 +86,15 @@ async def create_link_token():
     except Exception as ex:
         return {"error": ex}
 
+
 @router.post("/exchange_public_token")
 async def exchange_public_token(Token: Token):
     global access_token
     global item_id
     try:
-        exchange_request = ItemPublicTokenExchangeRequest(public_token=Token["public_token"])
+        exchange_request = ItemPublicTokenExchangeRequest(
+            public_token=Token["public_token"]
+        )
         exchange_response = client.item_public_token_exchange(exchange_request)
         access_token = exchange_response["access_token"]
         item_id = exchange_response["item_id"]
