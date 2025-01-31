@@ -125,3 +125,4 @@ cython_debug/
 
 # Poetry
 poetry.lock
+transactions example.json
